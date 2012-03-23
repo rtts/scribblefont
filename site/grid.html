@@ -17,7 +17,7 @@
   width: 100%;
 }
     </style>
-    <script>
+    <script type="text/javascript">
       var scale = 1;
       var imgsize = {width: 400, height: 400}
       var boxes = [
@@ -26,20 +26,19 @@
         
       $(document).ready( function() {
 	
-        $("#canvas").css("width", imgsize.width);
-        $("#canvas").css("height", imgsize.height);
+//        $("#canvas").css("width", imgsize.width);
+//        $("#canvas").css("height", imgsize.height);
 	
-        boxes.map(function(i) {
-          $("#canvas").append('<div class="box"><div class="line high"></div><div class="line low"></div></div>');
+        boxes.map(function(box, index) {
+          $("#canvas").append('<div id="' + index + '" class="box"><div class="line high"></div><div class="line low"></div></div>');
         });
         
         $(".box").draggable({
           cursor: "move",
           stop: function(event, ui) {
-            var box = boxes[$(".box").index(this)];
+            var box = boxes[this.id];
             box.top = ui.position.top / scale;
             box.left = ui.position.left / scale;
-            redraw();
           }
         });
         
@@ -63,7 +62,6 @@
             box.height = ui.size.height / scale;
             box.top = ui.position.top / scale;
             box.left = ui.position.left / scale;
-            redraw();
           }
         });
     
@@ -105,8 +103,8 @@
     </script>
   </head>
   <body>
-    <div id="canvas" style="background:#CCCCCC;overflow: hidden;position:relative;">
-      <img id="scan" src="jjs_handschrift.jpg" alt="JJs handwriting" style="position:absolute;"/>
+    <div id="canvas" style="background:#CCCCCC;overflow: hidden;position:relative;width:400px;height:400px;">
+      <img id="scan" width="400" height="400" src="jjs_handschrift.jpg" alt="JJs handwriting" style="position:absolute;"/>
     </div>
     <div id="zoomout">
       <h2>Zoom out</h2>

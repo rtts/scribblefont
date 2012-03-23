@@ -1,0 +1,11 @@
+#canvas .box {
+  border: solid red 1px;
+  position: absolute;
+}
+
+#canvas .line {
+  background: blue;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+}
