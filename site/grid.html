@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <title>Demo</title>
+    <style type="text/css">
+#canvas .box {
+  border: solid red 1px;
+  position: absolute;
+}
+#canvas .line {
+  border: solid blue 1px;
+  position: absolute;
+  width: 100%;
+}
+    </style>
+    <script type="text/javascript">
+      var scale = 1;
+      var imgsize = {width: 400, height: 400}
+      var boxes = [
+          {width: 100, height: 100, top: 100, left: 100, high: 33, low: 67}, 
+          {width: 300, height: 125, top: 35,  left: 65, high: 33, low: 67}];
+        
+      $(document).ready( function() {
+	
+//        $("#canvas").css("width", imgsize.width);
+//        $("#canvas").css("height", imgsize.height);
+	
+        boxes.map(function(box, index) {
+          $("#canvas").append('<div id="' + index + '" class="box"><div class="line high"></div><div class="line low"></div></div>');
+        });
+        
+        $(".box").draggable({
+          cursor: "move",
+          stop: function(event, ui) {
+            var box = boxes[this.id];
+            box.top = ui.position.top / scale;
+            box.left = ui.position.left / scale;
+          }
+        });
+        
+        $(".line").draggable({
+          axis: "y",
+          cursor: "n-resize",
+          stop: function(event, ui) {
+            var box = boxes[$(".box").index($(this).parent())];
+            if ($(this).hasClass("high")) {
+              box.high = ui.position.top / scale;
+            } else {
+              box.low = ui.position.top / scale;
+            }
+          }
+        });
+        
+        $(".box").resizable({
+          stop: function(event, ui) {
+            var box = boxes[$(".box").index(this)];
+            box.width = ui.size.width / scale;
+            box.height = ui.size.height / scale;
+            box.top = ui.position.top / scale;
+            box.left = ui.position.left / scale;
+          }
+        });
+    
+        $(".box").mousedown(function() {
+          $(".box").css("border", "solid red 1px");
+          $(this).css("border", "solid red 3px");
+        });
+                  
+        redraw();
+
+        $("#zoomout").click(function() {
+          scale/=2;
+          redraw();
+        });
+
+        $("#zoomin").click(function() {
+          scale*=2;
+          redraw();
+        });
+
+      });
+      
+      
+      function redraw() {
+        $("#zoomlevel").html("<p>zoom level: " + scale + "</p>");
+        $(".box").each(function (index) {
+          $(this).css("width" , boxes[index].width * scale);
+          $(this).css("height", boxes[index].height * scale);
+          $(this).css("top"   , boxes[index].top * scale);
+          $(this).css("left"  , boxes[index].left * scale);
+          $(this).children(".high").css("top", boxes[index].high * scale);
+          $(this).children(".low").css("top", boxes[index].low * scale);
+          
+        });
+        $("#scan").attr("width", imgsize.width * scale);
+        $("#scan").attr("height", imgsize.height * scale);
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div id="canvas" style="background:#CCCCCC;overflow: hidden;position:relative;width:400px;height:400px;">
+      <img id="scan" width="400" height="400" src="jjs_handschrift.jpg" alt="JJs handwriting" style="position:absolute;"/>
+    </div>
+    <div id="zoomout">
+      <h2>Zoom out</h2>
+    </div>
+    <div id="zoomin">
+      <h2>Zoom in</h2>
+    </div>
+    <div id="zoomlevel">
+      <p>zoom level: 1</p>
+    </div>
+
+  </body>
+</html>
