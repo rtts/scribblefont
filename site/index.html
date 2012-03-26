@@ -7,7 +7,6 @@
       body { font-family: "Swanky and Moo Moo", cursive; line-height: 150% }
       h1, input[type=submit] { font-family: "Rock Salt", cursive; font-size: 20px }
       h1, p, form { width: 65%; text-align: left }
-      h1, p { line-height: 37px; margin-top: 38px; }
       input, p { font-size: 26px; }
       center { font-family: serif; font-size: 14px }
     </style>
@@ -25,6 +24,7 @@
           </p>
           <form action="http://r2src.com/notify.cgi" method="POST">
             <input type="text" name="email" value="email address" onfocus="if (this.value == this.defaultValue) { this.value=''}">
+            <input type="hidden" name="project" value="Scribblefont">
             <input type="submit" value="Submit">
           </form>
         </td>
