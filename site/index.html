@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Scribblefont is not released yet!</title>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo);
+      @import url(http://fonts.googleapis.com/css?family=Rock+Salt);
+      body { font-family: "Swanky and Moo Moo", cursive; line-height: 150% }
+      h1, input[type=submit] { font-family: "Rock Salt", cursive; font-size: 20px }
+      h1, p, form { width: 65%; text-align: left }
+      h1, p { line-height: 37px; margin-top: 38px; }
+      input, p { font-size: 26px; }
+      center { font-family: serif; font-size: 14px }
+    </style>
+  </head>
+  <body>
+    <table width="100%" height="80%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td align="center" valign="middle">
+          <img src="scribblefont.png" alt="logo">
+          <h1>
+            Would you like a font file of your own handwriting?
+          </h1>
+          <p>
+            Well, then please be patient. We're working hard on creating a webapp that converts a scan of your handwriting into a TrueType font file. Interested? Leave your email address and we will notify you when it's ready!
+          </p>
+          <form action="http://r2src.com/notify.cgi" method="POST">
+            <input type="text" name="email" value="email address" onfocus="if (this.value == this.defaultValue) { this.value=''}">
+            <input type="submit" value="Submit">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <!--
+         background created by user djsoundwav at deviantART:
+         http://djsoundwav.deviantart.com/art/Texture-Notebook-Paper-3-46495593
+
+         you rock, djsoundwav!
+    -->
+    <img src="bg.jpg" alt="background image of crumpled paper" style="position: fixed; top: 0; left: 0; width: 100%; z-index: -1000">
+    <center>
+      Scribblefont is a project by <a href="http://r2src.com/"><img border="0" src="http://r2src.com/logo_small.png" style="vertical-align: top"> Return to the Source</a>
+    </center>
+  </body>
+</html>
