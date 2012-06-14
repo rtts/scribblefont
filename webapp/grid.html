@@ -46,7 +46,7 @@
           axis: "y",
           cursor: "n-resize",
           stop: function(event, ui) {
-            var box = boxes[$(".box").index($(this).parent())];
+            var box = boxes[$(this).parent().id];
             if ($(this).hasClass("high")) {
               box.high = ui.position.top / scale;
             } else {
