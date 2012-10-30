@@ -24,46 +24,23 @@
  * THE SOFTWARE.
  */
 
-var boxes = [new Box({x: 30, y: 20, width: 200, height: 150, letter: 'a'}),
-             new Box({x: 300, y: 60, width: 85, height: 120, letter: 'b'})
-             ];
+var CANVAS_HEIGHT = 600,				// Height of the html5 canvas
+	CANVAS_WIDTH = 800,				// Width of the html5 canvas
+	IMG_SRC = "jjs_handschrift.jpg", // Background image of the canvas
 
-window.onload = function() {
-	var stage = new Kinetic.Stage({
-		container: "container",
-		width: CANVAS_WIDTH,
-		height: CANVAS_HEIGHT
-	});
-	
-	var layer = new Kinetic.Layer({draggable: true});
-	var imgObj = new Image();
+	THEME_COLOR_1 = 'red',
+	THEME_COLOR_2 = 'blue',
 
-	imgObj.onload = function() {
-		
-		layer.setDragBoundFunc(function (pos) {
-			var maxX = - imgObj.width + stage.getWidth();
-			var maxY = - imgObj.height + stage.getHeight();
-			return {
-				x: pos.x > 0 ? 0 : ( pos.x < maxX ? maxX : pos.x ), 
-				y: pos.y > 0 ? 0 : ( pos.y < maxY ? maxY : pos.y )
-			};
-		});
-		var img = new Kinetic.Image({
-			image: imgObj,
-			x: 0,
-			y: 0,
-		});
-		layer.add(img);
-		img.moveToBottom();
-		layer.draw();
-	};
-	imgObj.src = IMG_SRC;
+	BOX_COLOR = THEME_COLOR_1,	// Color of the outline of the box
+	BOX_WIDTH = 1,				// Width of the outline of the box
+	BOX_ACTIVE_WIDTH = 3,		// Width of the outline of the active box
+	BOX_OPACITY = 0.8,			// Opacity of the outline and lines of the box
 	
-	for(var i=0; i<boxes.length; i++) {
-		layer.add(boxes[i]);
-	}
+	LINE_COLOR_MEAN = THEME_COLOR_2,	// Color of the mean line of the box
+	LINE_COLOR_BASE = THEME_COLOR_2,	// Color of the base line of the box
+	LINE_WIDTH = 1,
+	LINE_WIDTH_ACTIVE = 3;
+	LINE_WIDTH_HANDLE = 8;
 	
-	stage.add(layer);
-	layer.draw();
-	
-};
+	HANDLE_COLOR = THEME_COLOR_1;
+	HANDLE_STROKE_COLOR = THEME_COLOR_2;
