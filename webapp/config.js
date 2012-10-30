@@ -26,21 +26,25 @@
 
 var CANVAS_HEIGHT = 600,				// Height of the html5 canvas
 	CANVAS_WIDTH = 800,				// Width of the html5 canvas
-	IMG_SRC = "jjs_handschrift.jpg", // Background image of the canvas
+	IMG_SRC = 'jjs_handschrift.jpg', // Background image of the canvas
 
 	THEME_COLOR_1 = 'red',
 	THEME_COLOR_2 = 'blue',
+	OPACITY = 1,			// Opacity of the outline and lines of the box
 
 	BOX_COLOR = THEME_COLOR_1,	// Color of the outline of the box
-	BOX_WIDTH = 1,				// Width of the outline of the box
-	BOX_ACTIVE_WIDTH = 3,		// Width of the outline of the active box
-	BOX_OPACITY = 0.8,			// Opacity of the outline and lines of the box
+	BOX_WIDTH = 2,				// Width of the outline of the box
+	BOX_ACTIVE_WIDTH = 4,		// Width of the outline of the active box
 	
 	LINE_COLOR_MEAN = THEME_COLOR_2,	// Color of the mean line of the box
 	LINE_COLOR_BASE = THEME_COLOR_2,	// Color of the base line of the box
-	LINE_WIDTH = 1,
-	LINE_WIDTH_ACTIVE = 3;
-	LINE_WIDTH_HANDLE = 8;
+	LINE_WIDTH = BOX_WIDTH,
+	LINE_WIDTH_ACTIVE = BOX_ACTIVE_WIDTH,
+	LINE_WIDTH_HANDLE = 8,
 	
-	HANDLE_COLOR = THEME_COLOR_1;
-	HANDLE_STROKE_COLOR = THEME_COLOR_2;
+	ANCHOR_RADIUS = 5,
+	ANCHOR_COLOR = THEME_COLOR_1,
+	ANCHOR_STROKE_WIDTH = BOX_WIDTH,
+	ANCHOR_STROKE_ACTIVE_WIDTH = BOX_ACTIVE_WIDTH,
+	ANCHOR_STROKE_COLOR = THEME_COLOR_2;
+	
