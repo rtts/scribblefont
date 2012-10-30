@@ -7,8 +7,6 @@
  * group are relative to this coordinate. The coordinate corresponds to the
  * top-left point of the box's rectangle.
  * 
- * The group also has a width and height. If changed, the shapes in this group
- * will also be updated.
  */
 
 Box = function(config) {
@@ -43,20 +41,20 @@ Box.prototype = {
 			height : config.height,
 			name : 'baseline'
 		}), new Anchor({
-			width : config.width,
-			height : config.height,
+			x : 0,
+			y: 0,
 			name: 'top_left'
 		}), new Anchor({
-			width : config.width,
-			height : config.height,
+			x : config.width,
+			y : 0,
 			name: 'top_right'
 		}), new Anchor({
-			width : config.width,
-			height : config.height,
+			x : 0,
+			y : config.height,
 			name: 'bottom_left'
 		}), new Anchor({
-			width : config.width,
-			height : config.height,
+			x : config.width,
+			y : config.height,
 			name: 'bottom_right'
 		}) ].map(this.add, this);
 
@@ -72,6 +70,10 @@ Box.prototype = {
 			this.getLayer().draw();
 		});
 	},
+	/**
+	 * Changes the position, width, and height of shapes when an anchor moves.
+	 * @param active_anchor The anchor that moved.
+	 */
 	resize : function(active_anchor) {
 		var top_left = this.get(".top_left")[0];
         var top_right = this.get(".top_right")[0];
@@ -101,10 +103,12 @@ Box.prototype = {
             break;
         }
 
+        // change position of outline and lines
         outline.setPosition(top_left.attrs.x, top_left.attrs.y);
         meanline.setX(top_left.attrs.x);
         baseline.setX(top_left.attrs.x);
         
+        // change size of outline and lines
         var width = top_right.attrs.x - top_left.attrs.x;
         var height = bottom_left.attrs.y - top_left.attrs.y;
         if(width && height) {

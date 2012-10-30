@@ -9,8 +9,8 @@ Anchor.prototype = {
 		this.isTop = config.name.indexOf('top') != -1;
 		
 		Kinetic.Circle.call(this, {
-			x : config.name.indexOf('left') != -1 ? 0 : config.width,
-			y : config.name.indexOf('top') != -1 ? 0 : config.height,
+			x : config.x,
+			y : config.y,
 			name : config.name,
 			fill : ANCHOR_COLOR,
 			stroke : ANCHOR_STROKE_COLOR,
@@ -19,7 +19,7 @@ Anchor.prototype = {
 			dragBoundFunc : function(pos) {
 				var min = this.parent.getAbsolutePosition();
 				var max = {
-					x : min.x + config.width,
+					x : min.x + this.parent.get('.top_right')[0].attrs.x,
 					y : min.y + this.parent.get('.meanline')[0].attrs.y
 				};
 				min.y += this.parent.get('.baseline')[0].attrs.y;
