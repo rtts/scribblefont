@@ -1,3 +1,8 @@
+/**
+ * An anchor is a handle on the corner of a box with which you can resize
+ */
+
+
 Anchor = function(config) {
 	this._initAnchor(config);
 };
@@ -17,17 +22,13 @@ Anchor.prototype = {
 			strokeWidth : ANCHOR_STROKE_WIDTH,
 			draggable : true,
 			dragBoundFunc : function(pos) {
-				var min = this.parent.getAbsolutePosition();
-				var max = {
-					x : min.x + this.parent.get('.top_right')[0].attrs.x,
-					y : min.y + this.parent.get('.meanline')[0].attrs.y
-				};
-				min.y += this.parent.get('.baseline')[0].attrs.y;
+				var parY = this.parent.getAbsolutePosition().y;
+				var maxY = parY + this.parent.get('.meanline')[0].attrs.y;
+				var minY = parY + this.parent.get('.baseline')[0].attrs.y;
 				return {
-					x : this.isLeft ? (pos.x > max.x ? max.x : pos.x)
-							: (pos.x < min.x ? min.x : pos.x),
-					y : this.isTop ? (pos.y > max.y ? max.y : pos.y)
-							: (pos.y < min.y ? min.y : pos.y)
+					x : pos.x,
+					y : this.isTop ? (pos.y > maxY ? maxY : pos.y)
+							: (pos.y < minY ? minY : pos.y)
 				};
 			}
 		});

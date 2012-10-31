@@ -1,7 +1,7 @@
 /**
  * A box is a group of shapes with an associated letter. The shapes contained in
- * this group: - outline: a rectangle - meanline and baseline: a group -
- * handles: four circles
+ * this group are (1) outline: a rectangle (2) meanline and baseline: lines (3)
+ * anchors: four anchors
  * 
  * The group has a (x,y)-coordinate, the positions of the shapes within the
  * group are relative to this coordinate. The coordinate corresponds to the
