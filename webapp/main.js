@@ -37,7 +37,6 @@ var boxes = [ new Box({
 }) ];
 
 window.onload = function() {
-
 	var background = new Image();
 	background.src = IMG_SRC;
 
@@ -47,8 +46,8 @@ window.onload = function() {
 		var layer = new Kinetic.Layer({
 			draggable : true,
 			dragBoundFunc : function(pos) {
-				var maxX = -background.width + stage.getWidth();
-				var maxY = -background.height + stage.getHeight();
+				var maxX = -background.width + CANVAS_WIDTH;
+				var maxY = -background.height + CANVAS_HEIGHT;
 				return {
 					x : pos.x > 0 ? 0 : (pos.x < maxX ? maxX : pos.x),
 					y : pos.y > 0 ? 0 : (pos.y < maxY ? maxY : pos.y)
@@ -72,6 +71,9 @@ window.onload = function() {
 			width : CANVAS_WIDTH,
 			height : CANVAS_HEIGHT
 		}).add(layer);
+		
+		//layer.setScale(0.2);
+		layer.draw();
 	};
 	
 };

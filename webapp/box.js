@@ -56,7 +56,10 @@ Box.prototype = {
 			x : config.width,
 			y : config.height,
 			name: 'bottom_right'
-		}) ].map(this.add, this);
+		}), new Letter({
+			width : config.width,
+			letter : this.letter
+		})].map(this.add, this);
 
 		// EVENT HANDLERS
 		this.on('mouseover', function() {
