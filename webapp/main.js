@@ -37,6 +37,13 @@ var boxes = [ new Box({
 }) ];
 
 window.onload = function() {
+	document.getElementById('container').onkeypress = function(evt) {
+		var charCode = evt.which;
+		var charStr = String.fromCharCode(charCode);
+		
+		alert(charStr);
+	};
+	
 	var background = new Image();
 	background.src = IMG_SRC;
 
