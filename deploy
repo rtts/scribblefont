@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+import r2src
+
+# This simply deploys the 'site' subdir statically.
+# Use the dynamic method to serve wsgi apps
+r2src.deploy(name='scribblefont', url='scribblefont.com', method='static')
